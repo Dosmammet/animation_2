@@ -1,12 +1,10 @@
 import 'package:animation_2/homepage.dart';
-import 'package:animation_2/visible.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => Visible()),
-  ], child: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

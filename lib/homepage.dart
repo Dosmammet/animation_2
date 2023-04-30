@@ -1,6 +1,5 @@
 import 'package:animation_2/refresh_ind_menki.dart';
-import 'package:animation_2/shimmerheader.dart';
-import 'package:animation_2/visible.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -10,26 +9,18 @@ import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-  List<String> pageValue = ['One', '2', 'Three'];
+
   Future _onRefresh() async {
-    // monitor network fetch
     print('refreshing');
     await Future.delayed(Duration(milliseconds: 0));
     pagecontroller.animateToPage(0,
         duration: Duration(milliseconds: 600), curve: Curves.easeInOut);
-
-    // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
-    // monitor network fetch
     print('loading');
     await Future.delayed(Duration(milliseconds: 1000));
-    // if failed,use loadFailed(),if no data return,use LoadNodata()
-    // items.add((items.length + 1).toString());
-    // if (mounted) setState(() {});
-
     _refreshController.loadComplete();
   }
 
@@ -67,22 +58,7 @@ class HomePage extends StatelessWidget {
           ),
           Scaffold(
             backgroundColor: Colors.white,
-            body:
-                // SmartRefresher(
-                //   controller: _refreshController,
-                //   primary: true,
-                //   enablePullDown: true,
-                //   //enablePullUp: true,
-                //   onLoading: _onLoading,
-                //   onRefresh: _onRefresh,
-                //   header: ShimmerHeader(
-                //     text: Text(
-                //       "Refresh",
-                //       style: TextStyle(color: Colors.black, fontSize: 18),
-                //     ),
-                //   ),
-                //   child:
-                RefreshIndicatorMenki(
+            body: RefreshIndicatorMenki(
               title: 'Refresh',
               onRefresh: _onRefresh,
               child: SingleChildScrollView(
